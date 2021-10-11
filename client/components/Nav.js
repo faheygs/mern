@@ -1,6 +1,19 @@
+import { useContext } from 'react';
 import Link from 'next/link';
+import { UserContext } from '../context';
+import { useRouter } from 'next/router';
 
 const Nav = () => {
+    const [state, setState] = useContext(UserContext);
+
+    const router = useRouter();
+
+    const logout = () => {
+        window.localStorage.removeItem('auth');
+        setState(null);
+        router.push('/login');
+    }
+
     return (
         <nav className="nav d-flex justify-content-between" style={{ backgroundColor: 'blue' }}>
             <Link href='/'>
@@ -12,6 +25,8 @@ const Nav = () => {
             <Link href='/register'>
                 <a className='nav-link text-light'>Register</a>
             </Link>
+
+            <a onClick={logout} className='nav-link text-light'>Logout</a>
         </nav>
     )
 }
