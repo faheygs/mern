@@ -1,5 +1,6 @@
 import User from '../models/user';
 import { hashPassword, comparePassword } from '../helpers/auth';
+import jwt from 'jsonwebtoken';
 
 export const register = async(req, res) => {
     // console.log(`Register end point => ${JSON.stringify(req.body)}`);
@@ -32,3 +33,31 @@ export const register = async(req, res) => {
         return res.status(400).send('Error. Try again.')
     }
 };
+
+export const login = async(req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({email});
+
+        //Check for user
+        if(!user) return res.status(400).send('No user found.');
+
+        //Check passwords
+        const match = await comparePassword(password, user.password);
+        if(!match) return res.status(400).send('Wrong password.');
+
+        //Create signed token
+        const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, {expiresIn: '7d'});
+
+        user.password = undefined;
+        user.secret = undefined;
+
+        res.json({
+            token,
+            user
+        });
+    } catch(e) {
+        console.log(e);
+        return res.status(400).send('Error. Try again.');
+    }
+}
