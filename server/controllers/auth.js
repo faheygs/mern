@@ -60,4 +60,14 @@ export const login = async(req, res) => {
         console.log(e);
         return res.status(400).send('Error. Try again.');
     }
-}
+};
+
+export const currentUser = async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id);
+        res.json({ ok : true });
+    } catch(e) {
+        console.log(e);
+        res.sendStatus(400);
+    }
+};
