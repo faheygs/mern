@@ -83,7 +83,7 @@ const AuthForm = ({
 
             <div className="form-group p-2">
                 <button 
-                    disabled={page === 'login' ? !email || !password : !name || !email || !password || !secret}
+                    disabled={page === 'login' ? !email || !password || loading : !name || !email || !password || !secret || loading}
                     className='btn btn-primary'>
                     {loading ? <SyncOutlined spin className="py-1"/> : "Submit"}
                 </button>

@@ -25,13 +25,19 @@ const Login = () => {
                 password
             });
 
-            setState({
-                user: data.user,
-                token: data.token
-            });
-            //Save in local storage
-            window.localStorage.setItem('auth', JSON.stringify(data));
-            router.push("/");
+            if(data.error) {
+                toast.error(data.error);
+                setLoading(false);
+            } else {
+                setState({
+                    user: data.user,
+                    token: data.token
+                });
+                //Save in local storage
+                window.localStorage.setItem('auth', JSON.stringify(data));
+                router.push("/");
+            }
+            
         } catch(e) {
             setLoading(false);
             toast.error(e.response.data);
@@ -68,6 +74,16 @@ const Login = () => {
                     <p className='text-center'>Not yet registered? {" "}
                         <Link href='/register'>
                             <a>Register</a>
+                        </Link>
+                    </p>
+                </div>
+            </div>
+
+            <div className="row">
+                <div className="col">
+                    <p className='text-center'>
+                        <Link href='/forgot-password'>
+                            <a className="text-danger">Forgot Password</a>
                         </Link>
                     </p>
                 </div>
