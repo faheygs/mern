@@ -11,11 +11,46 @@ const AuthForm = ({
     secret,
     setSecret,
     loading,
-    page
+    page,
+    username,
+    setUsername,
+    about,
+    setAbout,
+    profileUpdate
 }) => {
 
     return (
         <form onSubmit={handleSubmit}>
+            
+            {profileUpdate && (
+                <div className='form-group p-2'>
+                    <small>
+                        <label className="text-muted">Username</label>
+                    </small>
+                    <input 
+                        type='text'
+                        className='form-control'
+                        placeholder="Enter Username"
+                        value={username}
+                        onChange={e => setUsername(e.target.value)} 
+                    />
+                </div>
+            )}
+            {profileUpdate && (
+                <div className='form-group p-2'>
+                    <small>
+                        <label className="text-muted">About</label>
+                    </small>
+                    <input 
+                        type='text'
+                        className='form-control'
+                        placeholder="Write about yourself"
+                        value={about}
+                        onChange={e => setAbout(e.target.value)} 
+                    />
+                </div>
+            )}
+
             {page !== 'login' && (
                 <div className='form-group p-2'>
                     <small>
@@ -35,6 +70,7 @@ const AuthForm = ({
                     <label className="text-muted">Email Address</label>
                 </small>
                 <input
+                    disabled={profileUpdate}
                     type='email'
                     className='form-control'
                     placeholder="Email Address"
@@ -83,7 +119,12 @@ const AuthForm = ({
 
             <div className="form-group p-2">
                 <button 
-                    disabled={page === 'login' ? !email || !password || loading : !name || !email || !password || !secret || loading}
+                    disabled={
+                        profileUpdate ? loading :
+                        page === 'login'
+                            ? !email || !password || loading
+                            : !name || !email || !password || !secret || loading
+                        }
                     className='btn btn-primary'>
                     {loading ? <SyncOutlined spin className="py-1"/> : "Submit"}
                 </button>
