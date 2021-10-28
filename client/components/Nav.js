@@ -16,8 +16,8 @@ const Nav = () => {
 
     const logout = () => {
         window.localStorage.removeItem('auth');
-        setState(null);
-        router.push('/login');
+        setState(null);   
+        router.push('/login');     
     }
 
     return (
