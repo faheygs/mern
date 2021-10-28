@@ -14,8 +14,11 @@ const Home = () => {
     const [content, setContent] = useState("");
     const [image, setImage] = useState({});
     const [uploading, setUploading] = useState(false);
+<<<<<<< HEAD
     const [posts, setPosts] = useState([]);
     const [people, setPeople] = useState([]);
+=======
+>>>>>>> d4c6423d3095f8332e8d57fc3dbfa81d54927a90
     const router = useRouter();
 
     useEffect(() => {
@@ -80,6 +83,7 @@ const Home = () => {
         }
     }
 
+<<<<<<< HEAD
     const handleDelete = async (post) => {
         try {
             const answer =  window.confirm('Are you sure?');
@@ -129,6 +133,8 @@ const Home = () => {
         }
     };
 
+=======
+>>>>>>> d4c6423d3095f8332e8d57fc3dbfa81d54927a90
     return (
         <UserRoute>
             <div className="container-fluid">
@@ -139,6 +145,7 @@ const Home = () => {
                 </div>
                 <div className="row py-3">
                     <div className="col-md-8">
+<<<<<<< HEAD
                         <PostForm
                             content={content}
                             setContent={setContent}
@@ -149,6 +156,9 @@ const Home = () => {
                         />
                         <br />
                         <PostList handleLike={handleLike} handleUnlike={handleUnlike} posts={posts} handleDelete={handleDelete} />
+=======
+                        <CreatePostForm content={content} setContent={setContent} postSubmit={postSubmit} handleImage={handleImage} uploading={uploading} image={image} />
+>>>>>>> d4c6423d3095f8332e8d57fc3dbfa81d54927a90
                     </div>
 
                     <div className="col-md-4">

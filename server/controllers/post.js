@@ -29,6 +29,10 @@ export const createPost = async (req, res) => {
 export const uploadImage = async (req, res) => {
     try {
         const result = await cloudinary.uploader.upload(req.files.image.path);
+<<<<<<< HEAD
+=======
+        console.log('upload image url: ', result);
+>>>>>>> d4c6423d3095f8332e8d57fc3dbfa81d54927a90
         res.json({
             url: result.secure_url,
             public_id: result.public_id
@@ -36,6 +40,7 @@ export const uploadImage = async (req, res) => {
     } catch(e) {
         console.log(e);
     }
+<<<<<<< HEAD
 };
 
 export const postsByUser = async (req, res) => {
@@ -121,3 +126,6 @@ export const unlikePost = async(req, res) => {
         console.log(e);
     }
 };
+=======
+}
+>>>>>>> d4c6423d3095f8332e8d57fc3dbfa81d54927a90
