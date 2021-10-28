@@ -38,6 +38,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/user/dashboard.js"
+    ],
+    "/user/following": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/user/following.js"
     ]
   },
   "ampFirstPages": []
