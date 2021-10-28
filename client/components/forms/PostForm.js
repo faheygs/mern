@@ -5,11 +5,7 @@ import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 
-<<<<<<< HEAD:client/components/forms/PostForm.js
 const PostForm = ({ content, setContent, postSubmit, handleImage, uploading, image }) => {
-=======
-const CreatePostForm = ({ content, setContent, postSubmit, handleImage, uploading, image }) => {
->>>>>>> d4c6423d3095f8332e8d57fc3dbfa81d54927a90:client/components/forms/CreatePostForm.js
     return (
         <div className="card">
             <div className="card-body pb-3">
